@@ -1,8 +1,3 @@
-<a href="#" onclick="messageModal()" class="text-sm font-semibold text-white px-4 py-2 bg-yellow-600 rounded-lg hover:bg-yellow-700 transition">
-    ارسال پیامک
-</a>
-
-
 <div id="smsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div class="bg-white rounded-2xl shadow-lg w-96 p-6 text-right relative">
         <h2 class="text-xl font-bold mb-4 text-gray-700">ارسال پیامک</h2>
@@ -91,3 +86,4 @@
     }
 
 </script>
+
