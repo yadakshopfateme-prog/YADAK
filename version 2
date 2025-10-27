@@ -28,7 +28,7 @@ function isMobile($phone) {
               class="w-full border border-gray-300 rounded-lg p-2 mb-3 h-28 resize-none focus:ring-2 focus:ring-yellow-400 outline-none"
               placeholder="متن پیام خود را وارد کنید"></textarea>
 
-    <!-- پیام‌های آماده از JSON -->
+
     <div id="readyMessages" class="flex flex-wrap gap-2 mb-4"></div>
 
     <div class="flex justify-between">
@@ -61,22 +61,28 @@ function isMobile($phone) {
 
   window.onclick = e => { if (e.target === modal) closeModal(); };
 
-  async function loadMessages() {
-    try {
-      const res = await fetch('messages.json');
-      const messages = await res.json();
-      readyMessagesDiv.innerHTML = '';
-      messages.forEach(m => {
-        const btn = document.createElement('button');
-        btn.textContent = m.title;
-        btn.className = 'bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-lg text-sm';
-        btn.onclick = () => { messageInput.value = m.messages; };
-        readyMessagesDiv.appendChild(btn);
-      });
-    } catch (e) {
-      console.error('خطا در خواندن JSON:', e);
-    }
+async function loadMessages() {
+  try {
+    const res = await fetch('messages.json');
+    if (!res.ok) throw new Error(`خطا در بارگذاری فایل: ${res.status}`);
+    const messages = await res.json();
+
+    const readyMessagesDiv = document.getElementById('readyMessages');
+    readyMessagesDiv.innerHTML = '';
+
+    messages.forEach(m => {
+      const btn = document.createElement('button');
+      btn.textContent = m.title;
+      btn.className = 'bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-lg text-sm';
+      btn.onclick = () => {
+        document.getElementById('messageInput').value = m.text;
+      };
+      readyMessagesDiv.appendChild(btn);
+    });
+  } catch (err) {
+    console.error(' خطا در بارگذاری پیام‌ها:', err);
   }
+}
 
   async function sendSMS() {
     const phone = document.getElementById('phone').value.trim();
