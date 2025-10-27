@@ -39,6 +39,7 @@ if (!$phone || !$message) {
     exit;
 }
 
-// ارسال پیامک
+
 $result = sendSMS($phone, $message);
 echo json_encode($result);
+
