@@ -1,0 +1,34 @@
+let fullname = '';
+
+function updateFullName() {
+    const lname = document.getElementById('last_name').value;
+    const fname = document.getElementById('name').value;
+
+    if (fname && lname) {
+        fullname = `${fname} ${lname}`;
+    } else if (fname) {
+        fullname = fname;
+    } else if (lname) {
+        fullname = lname;
+    } else {
+        fullname = '';
+    }
+}
+
+async function loadMessages() {
+    const res = await fetch('./messages.json');
+    const messages = await res.json();
+
+    readyMessagesDiv.innerHTML = '';
+
+    messages.forEach(m => {
+        const btn = document.createElement('button');
+        btn.textContent = m.title;
+        btn.className = 'bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-lg text-sm';
+        btn.onclick = () => {
+            updateFullName(); // هر بار مقدار جدید fullname رو بگیره
+            messageInput.value = `${fullname} ${m.message}`;
+        };
+        readyMessagesDiv.appendChild(btn);
+    });
+}
