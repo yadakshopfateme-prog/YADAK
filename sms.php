@@ -1,3 +1,19 @@
+<?php
+function isMobile($phone) {
+  $phone = trim($phone);
+
+  return preg_match('/^(09\d{9}|\+989\d{9})$/', $phone);
+}
+?>
+
+<?php if (isset($phone) && isMobile($phone)): ?>
+  <a class="text-sm grow text-center font-semibold text-white px-4 py-2 bg-yellow-600"
+     onclick="messageModal()" href="#">
+    ارسال پیامک
+  </a>
+<?php endif; ?>
+
+
 <div id="smsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div class="bg-white rounded-2xl shadow-lg w-96 p-6 text-right relative">
         <h2 class="text-xl font-bold mb-4 text-gray-700">ارسال پیامک</h2>
@@ -8,7 +24,7 @@
         <label class="block mb-2 text-sm font-medium text-gray-700">متن پیام:</label>
         <textarea id="messageInput" class="w-full border border-gray-300 rounded-lg p-2 mb-3 h-28 resize-none focus:ring-2 focus:ring-yellow-400 outline-none" placeholder="متن پیام خود را وارد کنید"></textarea>
 
-        <!-- دکمه‌های پیام آماده -->
+        <!--  پیام آماده -->
         <div id="readyMessages" class="flex flex-wrap gap-2 mb-4"></div>
 
         <div class="flex justify-between">
@@ -86,4 +102,3 @@
     }
 
 </script>
-
