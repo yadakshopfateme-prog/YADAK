@@ -65,7 +65,7 @@ function isMobile($phone) {
             btn.textContent = m.title;
             btn.className = 'bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-lg text-sm';
             btn.onclick = () => {
-                messageInput.value = m.text;
+                messageInput.value = m.message;
             };
             readyMessagesDiv.appendChild(btn);
         });
@@ -102,3 +102,4 @@ function isMobile($phone) {
     }
 
 </script>
+
