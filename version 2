@@ -75,7 +75,7 @@ async function loadMessages() {
       btn.textContent = m.title;
       btn.className = 'bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-lg text-sm';
       btn.onclick = () => {
-        document.getElementById('messageInput').value = m.text;
+        document.getElementById('messageInput').value = m.message;
       };
       readyMessagesDiv.appendChild(btn);
     });
